@@ -143,7 +143,11 @@ NOTES:
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+  //保存x y都是1的位, 保存x y都是0的位
+  int all_one = x & y;
+  int all_zero = (~x) & (~y);
+  // all_one all_zero中是1的位取并集,它们异或结果都是0 其余位异或结果都是1
+  return (~all_one) & (~all_zero);
 }
 /* 
  * tmin - return minimum two's complement integer 
@@ -152,8 +156,7 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int tmin(void) {
-
-  return 2;
+  return 1<<31;
 
 }
 //2
@@ -165,7 +168,7 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  return 2;
+  return !(((x + !!(~x)) ^ x) + 1);
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
